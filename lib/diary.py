@@ -32,7 +32,7 @@ class Diary:
         if self.find_entry(entry_title):
             print(self.find_entry(entry_title))
             return f"This is {self.find_entry(entry_title).title} entry:\n{self.find_entry(entry_title).content}"
-            #else:
-                #return "No entry found with the title {entry.title}"
+        else:
+            return f"No entry found with the title '{entry_title}'"
 
         #return "This is Third Entry entry:\n This is the third"
