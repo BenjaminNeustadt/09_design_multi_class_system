@@ -51,7 +51,7 @@ def test_diary_has_report_function_for_viewing():
     expected = "These are your entries:\n-First Entry: This is the first\n-Second Entry: This is the second"
     assert actual == expected
 
-def test_diary_has_report_function_for_viewing():
+def test_diary_reports_when_no_entries():
     diary = Diary()
     diary_entry = DiaryEntry("First Entry", "This is the first")
     second_diary_entry = DiaryEntry("Second Entry", "This is the second")
