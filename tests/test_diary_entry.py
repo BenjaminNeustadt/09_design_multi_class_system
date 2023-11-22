@@ -4,10 +4,12 @@ from lib.diary_entry import *
 # > So that I can record my experiences
 # > I want to keep a regular diary
 
-#
+
 # > As a user
 # > So that I can reflect on my experiences
 # > I want to read my past diary entries
+
+
 
 
 def test_diary_entry():
