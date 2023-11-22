@@ -60,3 +60,16 @@ def test_diary_reports_when_no_entries():
     expected = "No entries added yet"
     assert actual == expected
 
+def test_diary_has_report_function_for_viewing():
+    diary = Diary()
+    diary_entry = DiaryEntry("First Entry", "This is the first")
+    second_diary_entry = DiaryEntry("Second Entry", "This is the second")
+    third_diary_entry = DiaryEntry("Third Entry", "This is the third")
+
+    diary.add(diary_entry)
+    diary.add(second_diary_entry)
+    diary.add(third_diary_entry)
+
+    actual = diary.report_("Third Entry")
+    expected = "This is Third Entry entry:\nThis is the third"
+    assert actual == expected

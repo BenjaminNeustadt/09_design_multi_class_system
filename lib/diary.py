@@ -20,3 +20,19 @@ class Diary:
         final_report = f"{report_statement}{report_of_entries}"
 
         return final_report
+
+    def find_entry(self, entry_title):
+        for entry in self.list_of_entries:
+            if entry.title == entry_title:
+                return entry
+
+        # for entry in self.list_of_entries:
+        #     if entry.title == entry_title:
+    def report_(self, entry_title):
+        if self.find_entry(entry_title):
+            print(self.find_entry(entry_title))
+            return f"This is {self.find_entry(entry_title).title} entry:\n{self.find_entry(entry_title).content}"
+            #else:
+                #return "No entry found with the title {entry.title}"
+
+        #return "This is Third Entry entry:\n This is the third"
