@@ -6,6 +6,22 @@ class Diary:
     def add(self, entry):
         self.list_of_entries.append(entry)
 
+    #=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
+    # report functions and helpers +=+=+=+=
+    #=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
+
+    def find_entry(self, entry_title):
+        for entry in self.list_of_entries:
+            if entry.title == entry_title:
+                return entry
+
+    def report_(self, entry_title):
+        if self.find_entry(entry_title):
+            specific_entry = self.find_entry(entry_title)
+            return f"This is {specific_entry.title} entry:\n{specific_entry.content}"
+        else:
+            return f"No entry found with the title '{entry_title}'"
+
     def report_entries(self):
         list_of_entry_reports = []
         report_statement = "These are your entries:"
@@ -21,18 +37,4 @@ class Diary:
 
         return final_report
 
-    def find_entry(self, entry_title):
-        for entry in self.list_of_entries:
-            if entry.title == entry_title:
-                return entry
 
-        # for entry in self.list_of_entries:
-        #     if entry.title == entry_title:
-    def report_(self, entry_title):
-        if self.find_entry(entry_title):
-            print(self.find_entry(entry_title))
-            return f"This is {self.find_entry(entry_title).title} entry:\n{self.find_entry(entry_title).content}"
-        else:
-            return f"No entry found with the title '{entry_title}'"
-
-        #return "This is Third Entry entry:\n This is the third"
