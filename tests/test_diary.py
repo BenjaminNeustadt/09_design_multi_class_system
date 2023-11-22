@@ -49,8 +49,14 @@ def test_diary_has_report_function_for_viewing():
 
     actual = diary.report_entries()
     expected = "These are your entries:\n-First Entry: This is the first\n-Second Entry: This is the second"
-    print("=============")
-    print(expected)
-    print("=============")
+    assert actual == expected
+
+def test_diary_has_report_function_for_viewing():
+    diary = Diary()
+    diary_entry = DiaryEntry("First Entry", "This is the first")
+    second_diary_entry = DiaryEntry("Second Entry", "This is the second")
+
+    actual = diary.report_entries()
+    expected = "No entries added yet"
     assert actual == expected
 
