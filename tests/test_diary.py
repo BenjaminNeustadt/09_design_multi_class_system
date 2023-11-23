@@ -179,8 +179,6 @@ def tests_diary_can_create_todos():
     diary = Diary()
     diary_entry = DiaryEntry("Todo: Exercise", "Go for a walk")
 
-    #todo = Todo(diary_entry.title, diary_entry.content)
-
     diary.add(diary_entry)
     actual = diary.todos[0].name
 
@@ -192,8 +190,6 @@ def tests_diary_can_only_adds_todos_to_todos():
     diary_entry = DiaryEntry("Todo: Exercise", "Go for a walk")
     diary_entry_2 = DiaryEntry("Exercise", "Go for a walk")
 
-    #todo = Todo(diary_entry.title, diary_entry.content)
-
     diary.add(diary_entry)
     diary.add(diary_entry_2)
     actual = len(diary.todos)
@@ -201,64 +197,18 @@ def tests_diary_can_only_adds_todos_to_todos():
     expected = 1
     assert actual == expected
 
-# > As a user
-# > So that I can keep track of my tasks
-# > I want to keep a todo list along with my diary
-#
+def tests_diary_can_report_todos():
+    diary = Diary()
+    diary_entry = DiaryEntry("Todo: Exercise", "Go for a walk")
+    diary_entry_2 = DiaryEntry("Todo: Housecleaning", "Scrub the windows")
 
+    diary.add(diary_entry)
+    diary.add(diary_entry_2)
 
-# ```
-# NOTES:
+    actual = len(diary.todos)
+    expected = 2
+    assert actual == expected
 
-# - How would this actually be implemented? Would it be that if the word
-# todo appears inside an entry it automatically gets added to my todo
-# list?
-#
-# The way I can think of is to have a constructor attribute that calls a
-# method to check whether any of the entries have the word "todo" inside
-# of them, if they do, then a Todo class instance is created and that
-# entry is added to it. That is all that I can think of in regards the
-# following questions.
-#
-# - What is meant by "along with my diary"?
-#
-# - If this is the case, an instance of a todo would be created if there
-#   is the word todo prefixed somewhere. The todo class has its own
-# functions:
-#
-# reading_time.
-# mark_complete
-
-# PSEUDO code:
-
-# class Diary:
-#
-#     def __init__(self)
-#
-#         self.list_of_entries = []
-
-#         self.todos = find_todos(self.list_of_entries)
-#
-#         # the return would be either: "currently no todos" or a list of todos
-#         self.list_of_numbers = find_any_numbers(self.list_of_entries)
-#         # the return would be either "currently no numbers" or a list of
-#           numbers
-#         # there isn't anything about attributing a name to each number, the
-#         # phone number would have to be input in a very particular format in order
-#         # for that to work
-#
-#     def parse_todos(self):
-#         list_of_todos = []
-#         given a list of entries:
-#            if any of the entries.title or the entry.content include the word "todo":
-#             then create an instance of Todo class called todo
-#                 then list_of_todos.append(that todo entry)
-#         if list_of_todos is empty:
-#             return "currently no todos"
-#
-#         else:
-#             return list_of_todos
-#
-#
-#
-#
+    actual = diary.report_todos()
+    expected = "These are your todos:\n-Exercise: Go for a walk\n-Housecleaning: Scrub the windows"
+    assert actual == expected

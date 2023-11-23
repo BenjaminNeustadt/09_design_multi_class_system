@@ -6,15 +6,29 @@ class Diary:
         self.list_of_entries = []
         self.todos = []
 
-    def validate_todos(self, entry):
-
+    def validate_if_todos(self, entry):
         if entry.title.lower().startswith("todo"):
             new_todo = Todo(entry.title, entry.content)
             self.todos.append(new_todo)
 
     def add(self, entry):
-        self.validate_todos(entry)
+        self.validate_if_todos(entry)
         self.list_of_entries.append(entry)
+
+    def report_todos(self):
+        list_of_todos = []
+        report_statement = "These are your todos:"
+
+        if len(self.todos) == 0:
+            return "No todos added yet"
+
+        for todo in self.todos:
+           todo_name_without_prefix = todo.name.replace("Todo:", "").strip()
+           list_of_todos.append(f"\n-{todo_name_without_prefix}: {todo.entry}")
+        report_of_todos = ''.join(list_of_todos)
+        final_report = f"{report_statement}{report_of_todos}"
+
+        return final_report
 
     #=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
     # report functions and helpers +=+=+=+=
