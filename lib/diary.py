@@ -28,6 +28,17 @@ class Diary:
     # report functions and helpers +=+=+=+=
     #=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
 
+    def report_numbers(self):
+        list_of_numbers = []
+        report_statement = "These are your numbers:"
+
+        for number in self.numbers:
+           list_of_numbers.append(f"\n-{number}")
+        report_of_numbers = ''.join(list_of_numbers)
+        final_report = f"{report_statement}{report_of_numbers}"
+        return final_report
+
+
     def report_todos(self):
         list_of_todos = []
         report_statement = "These are your todos:"
