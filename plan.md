@@ -30,6 +30,8 @@ STILL TO DO:
 > I want to select diary entries to read based on how much time I have and my
 > reading speed
 
+/// DONE
+
 should it select the closest one to the parameters given?
 What if there are two given?
 
@@ -39,6 +41,24 @@ What if there are two given?
 > As a user
 > So that I can keep track of my tasks
 > I want to keep a todo list along with my diary
+
+Vague initial plan on functionality:
+
+       # ```
+       # diary = Diary()
+
+       # > diary.todos
+
+       # > "There are currently no todos recorded"
+
+       # OR:
+
+       # > here are your todos:
+       #     - Sport: run
+       #     - Hygiene: wash
+       #     - work: computer coding
+       # ```
+
 
 - How would this actually be implemented? Would it be that if the word
 todo appears inside an entry it automatically gets added to my todo
@@ -89,8 +109,10 @@ so it could look something like this:
 class Diary:
 
     def __init__(self)
+
         self.list_of_entries = []
         self.todos = find_todos(self.list_of_entries)
+
         # the return would be either: "currently no todos" or a list of todos
         self.list_of_numbers = find_any_numbers(self.list_of_entries)
         # the return would be either "currently no numbers" or a list of

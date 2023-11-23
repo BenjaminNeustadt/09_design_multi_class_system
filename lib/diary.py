@@ -1,9 +1,19 @@
+from lib.todo import *
+import pdb
 class Diary:
 
     def __init__(self):
         self.list_of_entries = []
+        self.todos = []
+
+    def validate_todos(self, entry):
+
+        if entry.title.lower().startswith("todo"):
+            new_todo = Todo(entry.title, entry.content)
+            self.todos.append(new_todo)
 
     def add(self, entry):
+        self.validate_todos(entry)
         self.list_of_entries.append(entry)
 
     #=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
