@@ -85,3 +85,39 @@ def test_diary_has_report_function_for_no_found_entry_by_that_title():
     actual = diary.report_("Third Entry")
     expected = "No entry found with the title 'Third Entry'"
     assert actual == expected
+
+# > As a user
+# > So that I can reflect on my experiences in my busy day
+# > I want to select diary entries to read based on how much time I have and my
+# > reading speed
+
+# parameters given: wpm, minutes
+# returns: diary entry that matches the reading parameters the closest
+
+one_hundred_words = "one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one"
+two_hundred_words = "one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one"
+
+def test_diary_can_select_optimal_diary_entry_example_1():
+    diary = Diary()
+    diary_entry = DiaryEntry("First Entry", one_hundred_words)
+
+    diary.add(diary_entry)
+
+    actual = diary.find_best_entry_for_reading_time(100, 1)
+    expected = diary_entry
+    assert actual == expected
+
+
+def test_diary_can_select_optimal_diary_entry_example_2():
+    diary = Diary()
+    diary_entry_2 = DiaryEntry("First Entry", two_hundred_words)
+    diary_entry = DiaryEntry("First Entry", one_hundred_words)
+
+    diary.add(diary_entry)
+    diary.add(diary_entry_2)
+
+    actual = diary.find_best_entry_for_reading_time(100, 1)
+    expected = diary_entry
+    assert actual == expected
+
+
