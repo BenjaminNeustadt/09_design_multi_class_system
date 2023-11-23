@@ -1,13 +1,6 @@
 from lib.diary import *
 from lib.diary_entry import *
 
-# > As a user
-# > So that I can record my experiences
-# > I want to keep a regular diary
-
-
-
-
 def test_diary_exists():
     diary = Diary()
 
@@ -27,10 +20,6 @@ def test_diary_list_of_entries_can_be_added_to():
     actual = diary.list_of_entries
     expected = [diary_entry]
     assert actual == expected
-
-# > As a user
-# > So that I can reflect on my experiences
-# > I want to read my past diary entries
 
 # Would that just be the contents?
 
@@ -96,6 +85,7 @@ def test_diary_has_report_function_for_no_found_entry_by_that_title():
 
 one_hundred_words = "one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one"
 two_hundred_words = "one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one"
+fifty_words = "one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one"
 
 def test_diary_can_select_optimal_diary_entry_example_1():
     diary = Diary()
@@ -103,7 +93,7 @@ def test_diary_can_select_optimal_diary_entry_example_1():
 
     diary.add(diary_entry)
 
-    actual = diary.find_best_entry_for_reading_time(100, 1)
+    actual = diary.find_entry_for_reading_time(100, 1)
     expected = diary_entry
     assert actual == expected
 
@@ -116,8 +106,66 @@ def test_diary_can_select_optimal_diary_entry_example_2():
     diary.add(diary_entry)
     diary.add(diary_entry_2)
 
-    actual = diary.find_best_entry_for_reading_time(100, 1)
+    actual = diary.find_entry_for_reading_time(100, 1)
     expected = diary_entry
+    assert actual == expected
+
+
+def test_diary_can_select_optimal_diary_entry_example_3():
+    diary = Diary()
+
+    diary_entry = DiaryEntry("First Entry", one_hundred_words)
+    diary_entry_2 = DiaryEntry("First Entry", two_hundred_words)
+    diary_entry_3 = DiaryEntry("First Entry", fifty_words)
+
+    diary.add(diary_entry)
+    diary.add(diary_entry_2)
+    diary.add(diary_entry_3)
+
+    actual = diary.find_entry_for_reading_time(25, 2)
+    expected = diary_entry_3
+    assert actual == expected
+
+# > As a user
+# > So that I can reflect on my experiences in my busy day
+# > I want to select diary entries to read based on how much time I have and my
+# > reading speed
+
+def test_diary_can_select_optimal_diary_entry_example_4():
+    diary = Diary()
+
+    diary_entry = DiaryEntry("First Entry", one_hundred_words)
+
+    diary_entry_2 = DiaryEntry("Second Entry", two_hundred_words)
+#    diary_entry_3 = DiaryEntry("Third Entry", fifty_words)
+
+    diary.add(diary_entry)
+    diary.add(diary_entry_2)
+#    diary.add(diary_entry_3)
+
+    actual = diary.find_entry_for_reading_time(50, 2)
+
+    expected = diary_entry
+    assert actual == expected
+
+
+def test_diary_can_select_optimal_diary_entry_example_4():
+    diary = Diary()
+
+    diary_entry = DiaryEntry("First Entry", one_hundred_words)
+    diary_entry_2 = DiaryEntry("Second Entry", two_hundred_words)
+    diary.add(diary_entry)
+    diary.add(diary_entry_2)
+
+    actual = diary.find_entry_for_reading_time(50, 1)
+
+    # NOTE: having it default to the next best is user friendly, but perhaps not
+    # expected for an MVP?
+
+    # the user should be told that there aren't any options that adher to those specifications
+
+    expected = "No entries found that match those specifications"
+
     assert actual == expected
 
 

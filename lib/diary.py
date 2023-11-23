@@ -42,7 +42,7 @@ class Diary:
     # best reading time
     #=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
 
-    def find_best_entry_for_reading_time(self, wpm, minutes):
+    def find_entry_for_reading_time(self, wpm, minutes):
         best_entry = None
         best_reading_time = float('inf')
 
@@ -52,5 +52,7 @@ class Diary:
                 if minutes - entry_reading_time < best_reading_time:
                      best_entry = entry
                      best_reading_time = minutes - entry_reading_time
-        return best_entry
-
+        if best_entry:
+            return best_entry
+        else:
+            return "No entries found that match those specifications"
