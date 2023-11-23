@@ -5,6 +5,7 @@ class Diary:
     def __init__(self):
         self.list_of_entries = []
         self.todos = []
+        self.numbers = []
 
     def validate_if_todos(self, entry):
         if entry.title.lower().startswith("todo"):

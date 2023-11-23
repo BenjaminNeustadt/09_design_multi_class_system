@@ -212,3 +212,20 @@ def tests_diary_can_report_todos():
     actual = diary.report_todos()
     expected = "These are your todos:\n-Exercise: Go for a walk\n-Housecleaning: Scrub the windows"
     assert actual == expected
+
+# > As a user
+# > So that I can keep track of my contacts
+# > I want to see a list of all of the mobile phone numbers in all my diary
+# > entries
+
+def tests_diary_has_numbers_attribute():
+    diary = Diary()
+    diary_entry = DiaryEntry("Christmas day", "Go for a walk")
+#   diary_entry_2 = DiaryEntry("Numbers of friends", "I met an old friend who gave their number: 02072804108 Jordan ")
+#   diary_entry_2 = DiaryEntry("Numbers of friends", "I met an old friend who gave their number: 07596802695 alfie ")
+
+    diary.add(diary_entry)
+    actual = diary.numbers
+    expected = []
+    assert actual == expected
+
