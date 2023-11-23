@@ -15,6 +15,11 @@ class Diary:
         self.validate_if_todos(entry)
         self.list_of_entries.append(entry)
 
+
+    #=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
+    # report functions and helpers +=+=+=+=
+    #=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
+
     def report_todos(self):
         list_of_todos = []
         report_statement = "These are your todos:"
@@ -29,10 +34,6 @@ class Diary:
         final_report = f"{report_statement}{report_of_todos}"
 
         return final_report
-
-    #=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
-    # report functions and helpers +=+=+=+=
-    #=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
 
     def find_entry(self, entry_title):
         for entry in self.list_of_entries:
