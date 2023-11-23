@@ -221,11 +221,42 @@ def tests_diary_can_report_todos():
 def tests_diary_has_numbers_attribute():
     diary = Diary()
     diary_entry = DiaryEntry("Christmas day", "Go for a walk")
-#   diary_entry_2 = DiaryEntry("Numbers of friends", "I met an old friend who gave their number: 02072804108 Jordan ")
-#   diary_entry_2 = DiaryEntry("Numbers of friends", "I met an old friend who gave their number: 07596802695 alfie ")
 
     diary.add(diary_entry)
     actual = diary.numbers
     expected = []
+    assert actual == expected
+
+def tests_diary_can_parse_numbers():
+    diary = Diary()
+    diary_entry = DiaryEntry("Numbers of friends", "I met an old friend who gave their number: 07596802695 alfie ")
+
+    diary.add(diary_entry)
+    actual = diary.numbers
+    expected = ['07596802695']
+    assert actual == expected
+
+def tests_diary_can_parse_numbers_multiple():
+    diary = Diary()
+    diary_entry_1 = DiaryEntry("Numbers of friends", "I met an old friend who gave their number: 02072804108 Jordan ")
+    diary_entry = DiaryEntry("Numbers of friends", "I met an old friend who gave their number: 07596802695 alfie ")
+
+    diary.add(diary_entry)
+    diary.add(diary_entry_1)
+    actual = diary.numbers
+    expected = ['07596802695', '02072804108']
+    assert actual == expected
+
+def tests_diary_find_numbers_ignores_invalid():
+    diary = Diary()
+    diary_entry = DiaryEntry("Numbers of friends", "I met an old friend who gave their number: 07596802695 alfie ")
+    diary_entry_1 = DiaryEntry("Numbers of friends", "I met an old friend who gave their number: 02072804108 Jordan ")
+    diary_entry_2 = DiaryEntry("Numbers of friends", "I met an old friend who gave their number: 07596695 alfie ")
+
+    diary.add(diary_entry)
+    diary.add(diary_entry_1)
+    diary.add(diary_entry_2)
+    actual = diary.numbers
+    expected = ['07596802695', '02072804108']
     assert actual == expected
 

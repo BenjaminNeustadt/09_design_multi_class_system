@@ -1,5 +1,6 @@
 from lib.todo import *
 import pdb
+
 class Diary:
 
     def __init__(self):
@@ -12,10 +13,16 @@ class Diary:
             new_todo = Todo(entry.title, entry.content)
             self.todos.append(new_todo)
 
+    def check_if_number(self, entry):
+        word_elements = entry.content.split()
+        for word in word_elements:
+            if word.isdigit() and len(word) == 11:
+                self.numbers.append(word)
+
     def add(self, entry):
+        self.check_if_number(entry)
         self.validate_if_todos(entry)
         self.list_of_entries.append(entry)
-
 
     #=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
     # report functions and helpers +=+=+=+=
@@ -62,7 +69,6 @@ class Diary:
         final_report = f"{report_statement}{report_of_entries}"
 
         return final_report
-
 
     #=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
     # best reading time
