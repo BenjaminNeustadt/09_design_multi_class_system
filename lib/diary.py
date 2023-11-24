@@ -28,6 +28,10 @@ class Diary:
     # report functions and helpers +=+=+=+=
     #=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
 
+    #===============#
+    # Phone numbers #
+    #===============#
+
     def report_numbers(self):
         list_of_numbers = []
         report_statement = "These are your numbers:"
@@ -38,6 +42,10 @@ class Diary:
         final_report = f"{report_statement}{report_of_numbers}"
         return final_report
 
+
+    #===============#
+    # Todos         #
+    #===============#
 
     def report_todos(self):
         list_of_todos = []
@@ -58,6 +66,10 @@ class Diary:
         for entry in self.list_of_entries:
             if entry.title == entry_title:
                 return entry
+
+    #===============#
+    # Report        #
+    #===============#
 
     def report_(self, entry_title):
         if self.find_entry(entry_title):
@@ -82,7 +94,7 @@ class Diary:
         return final_report
 
     #=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
-    # best reading time
+    # best reading time +=+=+=+=+=+=+=+=+=+
     #=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
 
     def find_entry_for_reading_time(self, wpm, minutes):
